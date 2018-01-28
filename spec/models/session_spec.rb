@@ -5,6 +5,12 @@ RSpec.describe Session, type: :model do
     expect { create(:session) }.to change(Session, :count).by(1)
   end
 
+  it 'is invalid with nil title attributes' do
+    expect { create(:session, name_es: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:session, name_en: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:session, name_es: nil, name_en: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'is valid to add exercises in a session' do
     @session = create(:session)
     @exercise = create(:exercise)

@@ -4,17 +4,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  has_many :routines_users
+  has_many :routines, through: :routines_users
+
   def full_name
     if first_name.nil? && last_name.nil?
       email
+    elsif first_name.nil?
+      last_name
+    elsif last_name.nil?
+      first_name
     else
-      if first_name.nil?
-        last_name
-      elsif last_name.nil?
-        first_name
-      else
-        "#{first_name} #{last_name}"
-      end
+      "#{first_name} #{last_name}"
     end
   end
 end
