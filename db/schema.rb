@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20180128105459) do
     t.bigint "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exercise_id", "session_id"], name: "index_exercises_sessions_on_exercise_id_and_session_id", unique: true
     t.index ["exercise_id"], name: "index_exercises_sessions_on_exercise_id"
     t.index ["session_id"], name: "index_exercises_sessions_on_session_id"
   end

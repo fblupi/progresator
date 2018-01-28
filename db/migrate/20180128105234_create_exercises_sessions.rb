@@ -6,5 +6,7 @@ class CreateExercisesSessions < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :exercises_sessions, [:exercise_id, :session_id], unique: true
   end
 end
