@@ -23,3 +23,6 @@
 
 # Ignore RubyMine project folder
 .idea/
+
+# Test coverage results
+coverage
